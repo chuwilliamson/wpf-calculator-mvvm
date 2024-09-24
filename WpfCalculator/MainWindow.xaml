@@ -5,21 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:WpfCalculator.ViewModel"
         mc:Ignorable="d"
-        Title="Calculator" Height="350" Width="325"
-                ResizeMode="NoResize"
->
+        Title="Calculator" Width="247" Height="400"
+        ResizeMode="NoResize"
+        SizeToContent="Manual">
 
-    <!-- Set the DataContext to the CalculatorViewModel -->
     <Window.DataContext>
         <vm:CalculatorViewModel/>
     </Window.DataContext>
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="162*"/>
-            <ColumnDefinition Width="163*"/>
-        </Grid.ColumnDefinitions>
-        <!-- Define rows for input, result display, and buttons -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -28,29 +22,58 @@
         </Grid.RowDefinitions>
 
         <!-- First Number Input -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,10,10,10" Grid.ColumnSpan="2">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
             <Label Content="Number 1:" Width="70"/>
-            <TextBox Width="59" Text="{Binding Number1, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+            <TextBox Width="150" Text="{Binding Number1, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <!-- Second Number Input -->
-        <StackPanel Orientation="Horizontal" Margin="10,10,23,10" Grid.Column="1">
-            <Label Content="Number 2:" Width="71"/>
-            <TextBox Width="49" Text="{Binding Number2, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
+            <Label Content="Number 2:" Width="70"/>
+            <TextBox Width="150" Text="{Binding Number2, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <!-- Result Display -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,10,10,10" Grid.ColumnSpan="2">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
             <Label Content="Result:" Width="70"/>
-            <TextBlock Width="150" Text="{Binding Result}" VerticalAlignment="Center" />
+            <TextBlock Width="150" Text="{Binding Result}" />
         </StackPanel>
 
-        <!-- Operation Buttons (Add, Subtract, Multiply, Divide) -->
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left" Margin="22,10,0,10" Grid.ColumnSpan="2" Width="280">
-            <Button Content="Add" Command="{Binding AddCommand}" Width="60" Margin="5"/>
-            <Button Content="Subtract" Command="{Binding SubtractCommand}" Width="60" Margin="5"/>
-            <Button Content="Multiply" Command="{Binding MultiplyCommand}" Width="60" Margin="5"/>
-            <Button Content="Divide" Command="{Binding DivideCommand}" Width="60" Margin="5"/>
-        </StackPanel>
+        <!-- Number Pad and Operation Buttons -->
+        <Grid Grid.Row="3" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <!-- New column for operation buttons -->
+            </Grid.ColumnDefinitions>
+
+            <!-- Buttons for numbers 1-9 -->
+            <Button Content="1" Command="{Binding NumberButtonCommand}" CommandParameter="1" Grid.Row="0" Grid.Column="0" Width="50" Height="50"/>
+            <Button Content="2" Command="{Binding NumberButtonCommand}" CommandParameter="2" Grid.Row="0" Grid.Column="1" Width="50" Height="50"/>
+            <Button Content="3" Command="{Binding NumberButtonCommand}" CommandParameter="3" Grid.Row="0" Grid.Column="2" Width="50" Height="50"/>
+            <Button Content="4" Command="{Binding NumberButtonCommand}" CommandParameter="4" Grid.Row="1" Grid.Column="0" Width="50" Height="50"/>
+            <Button Content="5" Command="{Binding NumberButtonCommand}" CommandParameter="5" Grid.Row="1" Grid.Column="1" Width="50" Height="50"/>
+            <Button Content="6" Command="{Binding NumberButtonCommand}" CommandParameter="6" Grid.Row="1" Grid.Column="2" Width="50" Height="50"/>
+            <Button Content="7" Command="{Binding NumberButtonCommand}" CommandParameter="7" Grid.Row="2" Grid.Column="0" Width="50" Height="50"/>
+            <Button Content="8" Command="{Binding NumberButtonCommand}" CommandParameter="8" Grid.Row="2" Grid.Column="1" Width="50" Height="50"/>
+            <Button Content="9" Command="{Binding NumberButtonCommand}" CommandParameter="9" Grid.Row="2" Grid.Column="2" Width="50" Height="50"/>
+
+            <!-- Button for 0 -->
+            <Button Content="0" Command="{Binding NumberButtonCommand}" CommandParameter="0" Grid.Row="3" Grid.Column="1" Width="50" Height="50"/>
+
+            <!-- Operation Buttons (Add, Subtract, Multiply, Divide) -->
+            <Button Content="Add" Command="{Binding AddCommand}" Grid.Row="0" Grid.Column="3" Width="50" Height="50"/>
+            <Button Content="Subtract" Command="{Binding SubtractCommand}" Grid.Row="1" Grid.Column="3" Width="50" Height="50"/>
+            <Button Content="Multiply" Command="{Binding MultiplyCommand}" Grid.Row="2" Grid.Column="3" Width="50" Height="50"/>
+            <Button Content="Divide" Command="{Binding DivideCommand}" Grid.Row="3" Grid.Column="3" Width="50" Height="50"/>
+        </Grid>
     </Grid>
 </Window>
