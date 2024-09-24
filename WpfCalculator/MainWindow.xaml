@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:WpfCalculator.ViewModel"
         mc:Ignorable="d"
-        Title="Calculator" Width="247" Height="400"
+        Title="Calculator" Width="350" Height="400"
         ResizeMode="NoResize"
         SizeToContent="Manual">
 
@@ -52,7 +52,6 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <!-- New column for operation buttons -->
             </Grid.ColumnDefinitions>
 
             <!-- Buttons for numbers 1-9 -->
@@ -70,10 +69,16 @@
             <Button Content="0" Command="{Binding NumberButtonCommand}" CommandParameter="0" Grid.Row="3" Grid.Column="1" Width="50" Height="50"/>
 
             <!-- Operation Buttons (Add, Subtract, Multiply, Divide) -->
-            <Button Content="Add" Command="{Binding AddCommand}" Grid.Row="0" Grid.Column="3" Width="50" Height="50"/>
-            <Button Content="Subtract" Command="{Binding SubtractCommand}" Grid.Row="1" Grid.Column="3" Width="50" Height="50"/>
-            <Button Content="Multiply" Command="{Binding MultiplyCommand}" Grid.Row="2" Grid.Column="3" Width="50" Height="50"/>
-            <Button Content="Divide" Command="{Binding DivideCommand}" Grid.Row="3" Grid.Column="3" Width="50" Height="50"/>
+            <Button Content="Add" Command="{Binding OperationCommand}" CommandParameter="Add" Grid.Row="0" Grid.Column="3" Width="50" Height="50"/>
+            <Button Content="Subtract" Command="{Binding OperationCommand}" CommandParameter="Subtract" Grid.Row="1" Grid.Column="3" Width="50" Height="50"/>
+            <Button Content="Multiply" Command="{Binding OperationCommand}" CommandParameter="Multiply" Grid.Row="2" Grid.Column="3" Width="50" Height="50"/>
+            <Button Content="Divide" Command="{Binding OperationCommand}" CommandParameter="Divide" Grid.Row="3" Grid.Column="3" Width="50" Height="50"/>
+
+            <!-- Clear Button -->
+            <Button Content="Clear" Command="{Binding ClearCommand}" Grid.Row="3" Grid.Column="2" Width="50" Height="50"/>
+
+            <!-- Equals Button -->
+            <Button Content="=" Command="{Binding EqualsCommand}" Grid.Row="3" Grid.Column="0" Width="50" Height="50"/>
         </Grid>
     </Grid>
 </Window>
