@@ -19,21 +19,31 @@ namespace WpfCalculator.ViewModel
         // Public properties for Number1, Number2, and Result, which the View (UI) binds to
         public double Number1
         {
-            get => _number1; // Getter returns the current value of _number1
+            get => _number1;
             set
             {
-                _number1 = value; // Setter updates _number1
-                OnPropertyChanged(nameof(Number1)); // Notifies the View that the property has changed
+                _number1 = value;
+                OnPropertyChanged(nameof(Number1));
+                // Update the commands when Number1 changes
+                ((RelayCommand)AddCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)SubtractCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)MultiplyCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)DivideCommand).RaiseCanExecuteChanged();
             }
         }
 
         public double Number2
         {
-            get => _number2; // Getter returns the current value of _number2
+            get => _number2;
             set
             {
-                _number2 = value; // Setter updates _number2
-                OnPropertyChanged(nameof(Number2)); // Notifies the View that the property has changed
+                _number2 = value;
+                OnPropertyChanged(nameof(Number2));
+                // Update the commands when Number2 changes
+                ((RelayCommand)AddCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)SubtractCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)MultiplyCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)DivideCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -73,10 +83,10 @@ namespace WpfCalculator.ViewModel
 
         // A helper method that determines whether a calculation can be performed
         // (In this case, we allow calculations if either number is non-zero)
-        //private bool CanCalculate() => Number1 != 0 || Number2 != 0;
+        private bool CanCalculate() => Number1 != 0 || Number2 != 0;
         
         
-        private bool CanCalculate() => true;//always return true to enable the buttons
+       // private bool CanCalculate() => true;//always return true to enable the buttons
 
         // Event that is raised when a property value changes (used for data binding)
         public event PropertyChangedEventHandler PropertyChanged;
