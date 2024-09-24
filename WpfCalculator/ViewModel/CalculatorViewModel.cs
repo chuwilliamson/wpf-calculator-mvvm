@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using WpfCalculator.Model;
 
@@ -76,7 +73,10 @@ namespace WpfCalculator.ViewModel
 
         // A helper method that determines whether a calculation can be performed
         // (In this case, we allow calculations if either number is non-zero)
-        private bool CanCalculate() => Number1 != 0 || Number2 != 0;
+        //private bool CanCalculate() => Number1 != 0 || Number2 != 0;
+        
+        
+        private bool CanCalculate() => true;//always return true to enable the buttons
 
         // Event that is raised when a property value changes (used for data binding)
         public event PropertyChangedEventHandler PropertyChanged;
@@ -87,4 +87,30 @@ namespace WpfCalculator.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
+
+    // RelayCommand class: implements ICommand to handle button click commands in the View
+    public class RelayCommand : ICommand
+    {
+        private readonly Action<object> _execute; // Action to execute when command is invoked
+        private readonly Predicate<object> _canExecute; // Predicate to determine if the command can execute
+
+        // Constructor: initializes the command with execute logic and optionally a condition for execution
+        public RelayCommand(Action<object> execute, Predicate<object> canExecute = null)
+        {
+            _execute = execute;
+            _canExecute = canExecute;
+        }
+
+        // Determines whether the command can execute (returns true if no condition is provided)
+        public bool CanExecute(object parameter) => _canExecute == null || _canExecute(parameter);
+
+        // Executes the action associated with the command
+        public void Execute(object parameter) => _execute(parameter);
+
+        // Event that is raised when the execution status changes
+        public event EventHandler CanExecuteChanged;
+
+        // Raises the CanExecuteChanged event to notify the View to reevaluate if the command can execute
+        public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+    }    
 }

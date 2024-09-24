@@ -3,10 +3,48 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfCalculator"
+        xmlns:vm="clr-namespace:WpfCalculator.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Calculator" Height="350" Width="300">
+
+    <!-- Set the DataContext to the CalculatorViewModel -->
+    <Window.DataContext>
+        <vm:CalculatorViewModel/>
+    </Window.DataContext>
+
     <Grid>
-        
+        <!-- Define rows for input, result display, and buttons -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- First Number Input -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <Label Content="Number 1:" Width="70"/>
+            <TextBox Width="150" Text="{Binding Number1, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+        <!-- Second Number Input -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
+            <Label Content="Number 2:" Width="70"/>
+            <TextBox Width="150" Text="{Binding Number2, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+        <!-- Result Display -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+            <Label Content="Result:" Width="70"/>
+            <TextBlock Width="150" Text="{Binding Result}" />
+        </StackPanel>
+
+        <!-- Operation Buttons (Add, Subtract, Multiply, Divide) -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Content="Add" Width="60" Margin="5" Command="{Binding AddCommand, Mode=OneWay}" DataContext="{Binding Mode=OneWay}"/>
+            <Button Content="Subtract" Command="{Binding SubtractCommand}" Width="60" Margin="5"/>
+            <Button Content="Multiply" Command="{Binding MultiplyCommand}" Width="60" Margin="5"/>
+            <Button Content="Divide" Command="{Binding DivideCommand}" Width="60" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Window>
