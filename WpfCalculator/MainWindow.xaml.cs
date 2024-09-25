@@ -49,7 +49,7 @@ namespace WpfCalculator
                 _isNumber1Active = false;
                 Number2TextBox.Focus();
             }
-            else if (e.Key == Key.Multiply)
+            else if (e.Key == Key.Multiply || (e.Key == Key.D8 && Keyboard.Modifiers == ModifierKeys.Shift))//add this so the user can press asterisk to multiply
             {
                 e.Handled = true;
                 viewModel.OperationCommand.Execute("Multiply");
