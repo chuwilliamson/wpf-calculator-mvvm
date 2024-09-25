@@ -79,13 +79,13 @@ namespace WpfCalculator.ViewModel
             DecimalButtonCommand = new RelayCommand(OnDecimalButtonClick); // Bind decimal button
         }
 
-        // Sets the current operation (Add, Subtract, Multiply, Divide) and updates the displayed operation
+        // Sets the current operation (Add, Subtract, Multiply, Divide) and displays it
         private void SetOperation(object parameter)
         {
             if (parameter != null)
             {
                 _selectedOperation = parameter.ToString(); // Store the selected operation as a string
-                _selectedOperationDisplay = GetOperationSymbol(_selectedOperation); // Update the displayed operation symbol
+                _selectedOperationDisplay = GetOperationSymbol(_selectedOperation); // Update the display symbol
                 OnPropertyChanged(nameof(SelectedOperationDisplay)); // Notify the UI about the update
                 _isNumber1Active = false; // Switch to entering Number2 after the operation is selected
             }
@@ -109,7 +109,6 @@ namespace WpfCalculator.ViewModel
             }
         }
 
-
         // Executes the stored operation when the Equals button is pressed
         private void ExecuteOperation(object parameter)
         {
@@ -132,6 +131,11 @@ namespace WpfCalculator.ViewModel
                         Result = _calculator.Divide(ConvertToDouble(Number1), ConvertToDouble(Number2));
                         break;
                 }
+
+                // Clear the selected operation and reset the display after evaluation
+                _selectedOperation = "";
+                SelectedOperationDisplay = ""; // Clear the displayed operator
+                OnPropertyChanged(nameof(SelectedOperationDisplay)); // Notify UI to update
 
                 // After performing the operation, reset for a new calculation
                 Reset();
