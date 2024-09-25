@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:WpfCalculator.ViewModel"
         mc:Ignorable="d"
-        Title="Calculator" Width="400" Height="500"
+        Title="Calculator" Width="366" Height="571"
         ResizeMode="NoResize"
         SizeToContent="Manual">
 
@@ -13,7 +13,7 @@
         <vm:CalculatorViewModel/>
     </Window.DataContext>
 
-    <Grid>
+    <Grid Margin="0,0,10,0">
         <!-- Adjust the row sizes to give more space for input and result rows -->
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
@@ -27,21 +27,20 @@
         <!-- Display for Number1, Selected Operator, and Number2 on one row -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <!-- Number1 Input -->
-            <TextBlock Width="100" Text="{Binding Number1}" HorizontalAlignment="Right" TextAlignment="Right" FontSize="20"/>
+            <TextBlock Width="100" Text="{Binding Number1}" TextAlignment="Right" FontSize="36" Background="#FFACC9D9" TextWrapping="Wrap"/>
             <!-- Operator Display -->
-            <TextBlock Width="30" Text="{Binding SelectedOperationDisplay}" HorizontalAlignment="Center" TextAlignment="Center" FontSize="20"/>
+            <TextBlock Width="80" Text="{Binding SelectedOperationDisplay}" TextAlignment="Center" FontSize="36" Background="#FFE4AEAE"/>
             <!-- Number2 Input -->
-            <TextBlock Width="100" Text="{Binding Number2}" HorizontalAlignment="Left" TextAlignment="Left" FontSize="20"/>
+            <TextBlock Width="100" Text="{Binding Number2}" HorizontalAlignment="Left" TextAlignment="Left" FontSize="36" Background="#FFACC9D9" TextWrapping="Wrap"/>
         </StackPanel>
 
         <!-- Result Display -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Label Content="Result:" Width="70" FontSize="16"/>
-            <TextBlock Width="200" Text="{Binding Result}" FontSize="16"/>
+            <TextBlock Width="200" Text="{Binding Result}" FontSize="36" Background="#FFE4AEAE" TextAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Number Pad and Operation Buttons -->
-        <Grid Grid.Row="2" Margin="10">
+        <Grid Grid.Row="2" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -75,9 +74,9 @@
             <Button Content="." Command="{Binding DecimalButtonCommand}" Grid.Row="3" Grid.Column="0" Width="70" Height="70" FontSize="18"/>
 
             <!-- Operation Buttons (Add, Subtract, Multiply, Divide) -->
-            <Button Content="Add" Command="{Binding OperationCommand}" CommandParameter="Add" Grid.Row="0" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
-            <Button Content="Subtract" Command="{Binding OperationCommand}" CommandParameter="Subtract" Grid.Row="1" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
-            <Button Content="Multiply" Command="{Binding OperationCommand}" CommandParameter="Multiply" Grid.Row="2" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
+            <Button Content="+" Command="{Binding OperationCommand}" CommandParameter="Add" Grid.Row="0" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
+            <Button Content="-" Command="{Binding OperationCommand}" CommandParameter="Subtract" Grid.Row="1" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
+            <Button Content="*" Command="{Binding OperationCommand}" CommandParameter="Multiply" Grid.Row="2" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
             <Button Content="Divide" Command="{Binding OperationCommand}" CommandParameter="Divide" Grid.Row="3" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
 
             <!-- Clear Button -->
