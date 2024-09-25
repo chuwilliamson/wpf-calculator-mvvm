@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="Calculator" Width="366" Height="571"
         ResizeMode="NoResize"
-        SizeToContent="Manual">
+        SizeToContent="Manual"
+        KeyDown="Window_KeyDown">
+    <!-- KeyDown event for global keyboard input -->
 
     <Window.DataContext>
         <vm:CalculatorViewModel/>
@@ -17,21 +19,18 @@
         <!-- Adjust the row sizes to give more space for input and result rows -->
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
-            <!-- More space for number input and operator -->
             <RowDefinition Height="1*" />
-            <!-- Space for the result display -->
             <RowDefinition Height="5*" />
-            <!-- Space for buttons -->
         </Grid.RowDefinitions>
 
         <!-- Display for Number1, Selected Operator, and Number2 on one row -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <!-- Number1 Input -->
-            <TextBlock Width="100" Text="{Binding Number1}" TextAlignment="Right" FontSize="36" Background="#FFACC9D9" TextWrapping="Wrap"/>
+            <TextBox x:Name="Number1TextBox" Width="100" Text="{Binding Number1, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right" FontSize="36" Background="#FFACC9D9" TextWrapping="Wrap"/>
             <!-- Operator Display -->
             <TextBlock Width="80" Text="{Binding SelectedOperationDisplay}" TextAlignment="Center" FontSize="36" Background="#FFE4AEAE"/>
             <!-- Number2 Input -->
-            <TextBlock Width="100" Text="{Binding Number2}" HorizontalAlignment="Left" TextAlignment="Left" FontSize="36" Background="#FFACC9D9" TextWrapping="Wrap"/>
+            <TextBox x:Name="Number2TextBox" Width="100" Text="{Binding Number2, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Left" FontSize="36" Background="#FFACC9D9" TextWrapping="Wrap"/>
         </StackPanel>
 
         <!-- Result Display -->
@@ -77,7 +76,7 @@
             <Button Content="+" Command="{Binding OperationCommand}" CommandParameter="Add" Grid.Row="0" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
             <Button Content="-" Command="{Binding OperationCommand}" CommandParameter="Subtract" Grid.Row="1" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
             <Button Content="*" Command="{Binding OperationCommand}" CommandParameter="Multiply" Grid.Row="2" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
-            <Button Content="Divide" Command="{Binding OperationCommand}" CommandParameter="Divide" Grid.Row="3" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
+            <Button Content="/" Command="{Binding OperationCommand}" CommandParameter="Divide" Grid.Row="3" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
 
             <!-- Clear Button -->
             <Button Content="Clear" Command="{Binding ClearCommand}" Grid.Row="3" Grid.Column="2" Width="70" Height="70" FontSize="18"/>
