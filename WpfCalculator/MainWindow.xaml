@@ -33,20 +33,14 @@
             <TextBox Width="150" Text="{Binding Number2, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
-        <!-- Display for Selected Operation -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Label Content="Operation:" Width="70"/>
-            <TextBlock Width="50" Text="{Binding SelectedOperationDisplay}" />
-        </StackPanel>
-
         <!-- Result Display -->
-        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="10">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
             <Label Content="Result:" Width="70"/>
             <TextBlock Width="150" Text="{Binding Result}" />
         </StackPanel>
 
         <!-- Number Pad and Operation Buttons -->
-        <Grid Grid.Row="4" Margin="10">
+        <Grid Grid.Row="3" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
