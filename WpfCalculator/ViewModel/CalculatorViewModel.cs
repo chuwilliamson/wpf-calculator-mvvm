@@ -5,7 +5,6 @@ using WpfCalculator.Model;
 
 namespace WpfCalculator.ViewModel
 {
-    // The CalculatorViewModel class implements INotifyPropertyChanged to support data binding
     public class CalculatorViewModel : INotifyPropertyChanged
     {
         private string _number1 = ""; // Stores the first number input
@@ -48,11 +47,12 @@ namespace WpfCalculator.ViewModel
             }
         }
 
-        // ICommand properties for arithmetic operations and equals functionality
+        // ICommand properties for operations and decimal input
         public ICommand OperationCommand { get; } // Command to handle operation button clicks
         public ICommand EqualsCommand { get; } // Command to handle equals button click
         public ICommand ClearCommand { get; } // Command to handle clearing the inputs
         public ICommand NumberButtonCommand { get; } // Command to handle number button clicks (0-9)
+        public ICommand DecimalButtonCommand { get; } // Command to handle decimal button click
 
         // Constructor: Initializes the Calculator model and commands
         public CalculatorViewModel()
@@ -64,6 +64,7 @@ namespace WpfCalculator.ViewModel
             EqualsCommand = new RelayCommand(ExecuteOperation); // Bind equals button
             ClearCommand = new RelayCommand(Clear); // Bind clear button
             NumberButtonCommand = new RelayCommand(OnNumberButtonClick); // Bind number buttons
+            DecimalButtonCommand = new RelayCommand(OnDecimalButtonClick); // Bind decimal button
         }
 
         // Sets the current operation (Add, Subtract, Multiply, Divide) based on the user's choice
@@ -117,6 +118,20 @@ namespace WpfCalculator.ViewModel
             else
             {
                 Number2 += clickedNumber; // Append the clicked number to Number2
+            }
+        }
+
+        // Handles decimal button click and appends the decimal point to the active number
+        private void OnDecimalButtonClick(object parameter)
+        {
+            // Ensure that the decimal point is added only if it hasn't been added already
+            if (_isNumber1Active && !Number1.Contains("."))
+            {
+                Number1 += "."; // Append decimal point to Number1
+            }
+            else if (!_isNumber1Active && !Number2.Contains("."))
+            {
+                Number2 += "."; // Append decimal point to Number2
             }
         }
 
