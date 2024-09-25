@@ -54,21 +54,23 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <!-- Buttons for numbers 1-9 -->
-            <Button Content="1" Command="{Binding NumberButtonCommand}" CommandParameter="1" Grid.Row="0" Grid.Column="0" Width="50" Height="50"/>
-            <Button Content="2" Command="{Binding NumberButtonCommand}" CommandParameter="2" Grid.Row="0" Grid.Column="1" Width="50" Height="50"/>
-            <Button Content="3" Command="{Binding NumberButtonCommand}" CommandParameter="3" Grid.Row="0" Grid.Column="2" Width="50" Height="50"/>
-            <Button Content="4" Command="{Binding NumberButtonCommand}" CommandParameter="4" Grid.Row="1" Grid.Column="0" Width="50" Height="50"/>
+            <!-- Buttons for numbers 9-7 -->
+            <Button Content="9" Command="{Binding NumberButtonCommand}" CommandParameter="9" Grid.Row="0" Grid.Column="0" Width="50" Height="50"/>
+            <Button Content="8" Command="{Binding NumberButtonCommand}" CommandParameter="8" Grid.Row="0" Grid.Column="1" Width="50" Height="50"/>
+            <Button Content="7" Command="{Binding NumberButtonCommand}" CommandParameter="7" Grid.Row="0" Grid.Column="2" Width="50" Height="50"/>
+
+            <!-- Buttons for numbers 6-4 -->
+            <Button Content="6" Command="{Binding NumberButtonCommand}" CommandParameter="6" Grid.Row="1" Grid.Column="0" Width="50" Height="50"/>
             <Button Content="5" Command="{Binding NumberButtonCommand}" CommandParameter="5" Grid.Row="1" Grid.Column="1" Width="50" Height="50"/>
-            <Button Content="6" Command="{Binding NumberButtonCommand}" CommandParameter="6" Grid.Row="1" Grid.Column="2" Width="50" Height="50"/>
-            <Button Content="7" Command="{Binding NumberButtonCommand}" CommandParameter="7" Grid.Row="2" Grid.Column="0" Width="50" Height="50"/>
-            <Button Content="8" Command="{Binding NumberButtonCommand}" CommandParameter="8" Grid.Row="2" Grid.Column="1" Width="50" Height="50"/>
-            <Button Content="9" Command="{Binding NumberButtonCommand}" CommandParameter="9" Grid.Row="2" Grid.Column="2" Width="50" Height="50"/>
+            <Button Content="4" Command="{Binding NumberButtonCommand}" CommandParameter="4" Grid.Row="1" Grid.Column="2" Width="50" Height="50"/>
 
-            <!-- Button for 0 -->
+            <!-- Buttons for numbers 3-1 -->
+            <Button Content="3" Command="{Binding NumberButtonCommand}" CommandParameter="3" Grid.Row="2" Grid.Column="0" Width="50" Height="50"/>
+            <Button Content="2" Command="{Binding NumberButtonCommand}" CommandParameter="2" Grid.Row="2" Grid.Column="1" Width="50" Height="50"/>
+            <Button Content="1" Command="{Binding NumberButtonCommand}" CommandParameter="1" Grid.Row="2" Grid.Column="2" Width="50" Height="50"/>
+
+            <!-- Button for 0 and Decimal Button -->
             <Button Content="0" Command="{Binding NumberButtonCommand}" CommandParameter="0" Grid.Row="3" Grid.Column="1" Width="50" Height="50"/>
-
-            <!-- Decimal Button -->
             <Button Content="." Command="{Binding DecimalButtonCommand}" Grid.Row="3" Grid.Column="0" Width="50" Height="50"/>
 
             <!-- Operation Buttons (Add, Subtract, Multiply, Divide) -->
