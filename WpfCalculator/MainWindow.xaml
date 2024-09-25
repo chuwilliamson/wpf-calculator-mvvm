@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:WpfCalculator.ViewModel"
         mc:Ignorable="d"
-        Title="Calculator" Width="350" Height="400"
+        Title="Calculator" Width="400" Height="500"
         ResizeMode="NoResize"
         SizeToContent="Manual">
 
@@ -14,33 +14,34 @@
     </Window.DataContext>
 
     <Grid>
+        <!-- Adjust the row sizes to give more space for input and result rows -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <!-- More space for number input and operator -->
+            <RowDefinition Height="1*" />
+            <!-- Space for the result display -->
+            <RowDefinition Height="5*" />
+            <!-- Space for buttons -->
         </Grid.RowDefinitions>
 
-        <!-- First Number Input -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
-            <Label Content="Number 1:" Width="70"/>
-            <TextBox Width="150" Text="{Binding Number1, UpdateSourceTrigger=PropertyChanged}"/>
-        </StackPanel>
-
-        <!-- Second Number Input -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
-            <Label Content="Number 2:" Width="70"/>
-            <TextBox Width="150" Text="{Binding Number2, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Display for Number1, Selected Operator, and Number2 on one row -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <!-- Number1 Input -->
+            <TextBlock Width="100" Text="{Binding Number1}" HorizontalAlignment="Right" TextAlignment="Right" FontSize="20"/>
+            <!-- Operator Display -->
+            <TextBlock Width="30" Text="{Binding SelectedOperationDisplay}" HorizontalAlignment="Center" TextAlignment="Center" FontSize="20"/>
+            <!-- Number2 Input -->
+            <TextBlock Width="100" Text="{Binding Number2}" HorizontalAlignment="Left" TextAlignment="Left" FontSize="20"/>
         </StackPanel>
 
         <!-- Result Display -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
-            <Label Content="Result:" Width="70"/>
-            <TextBlock Width="150" Text="{Binding Result}" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Label Content="Result:" Width="70" FontSize="16"/>
+            <TextBlock Width="200" Text="{Binding Result}" FontSize="16"/>
         </StackPanel>
 
         <!-- Number Pad and Operation Buttons -->
-        <Grid Grid.Row="3" Margin="10">
+        <Grid Grid.Row="2" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -55,35 +56,35 @@
             </Grid.ColumnDefinitions>
 
             <!-- Buttons for numbers 9-7 -->
-            <Button Content="9" Command="{Binding NumberButtonCommand}" CommandParameter="9" Grid.Row="0" Grid.Column="0" Width="50" Height="50"/>
-            <Button Content="8" Command="{Binding NumberButtonCommand}" CommandParameter="8" Grid.Row="0" Grid.Column="1" Width="50" Height="50"/>
-            <Button Content="7" Command="{Binding NumberButtonCommand}" CommandParameter="7" Grid.Row="0" Grid.Column="2" Width="50" Height="50"/>
+            <Button Content="9" Command="{Binding NumberButtonCommand}" CommandParameter="9" Grid.Row="0" Grid.Column="0" Width="70" Height="70" FontSize="18"/>
+            <Button Content="8" Command="{Binding NumberButtonCommand}" CommandParameter="8" Grid.Row="0" Grid.Column="1" Width="70" Height="70" FontSize="18"/>
+            <Button Content="7" Command="{Binding NumberButtonCommand}" CommandParameter="7" Grid.Row="0" Grid.Column="2" Width="70" Height="70" FontSize="18"/>
 
             <!-- Buttons for numbers 6-4 -->
-            <Button Content="6" Command="{Binding NumberButtonCommand}" CommandParameter="6" Grid.Row="1" Grid.Column="0" Width="50" Height="50"/>
-            <Button Content="5" Command="{Binding NumberButtonCommand}" CommandParameter="5" Grid.Row="1" Grid.Column="1" Width="50" Height="50"/>
-            <Button Content="4" Command="{Binding NumberButtonCommand}" CommandParameter="4" Grid.Row="1" Grid.Column="2" Width="50" Height="50"/>
+            <Button Content="6" Command="{Binding NumberButtonCommand}" CommandParameter="6" Grid.Row="1" Grid.Column="0" Width="70" Height="70" FontSize="18"/>
+            <Button Content="5" Command="{Binding NumberButtonCommand}" CommandParameter="5" Grid.Row="1" Grid.Column="1" Width="70" Height="70" FontSize="18"/>
+            <Button Content="4" Command="{Binding NumberButtonCommand}" CommandParameter="4" Grid.Row="1" Grid.Column="2" Width="70" Height="70" FontSize="18"/>
 
             <!-- Buttons for numbers 3-1 -->
-            <Button Content="3" Command="{Binding NumberButtonCommand}" CommandParameter="3" Grid.Row="2" Grid.Column="0" Width="50" Height="50"/>
-            <Button Content="2" Command="{Binding NumberButtonCommand}" CommandParameter="2" Grid.Row="2" Grid.Column="1" Width="50" Height="50"/>
-            <Button Content="1" Command="{Binding NumberButtonCommand}" CommandParameter="1" Grid.Row="2" Grid.Column="2" Width="50" Height="50"/>
+            <Button Content="3" Command="{Binding NumberButtonCommand}" CommandParameter="3" Grid.Row="2" Grid.Column="0" Width="70" Height="70" FontSize="18"/>
+            <Button Content="2" Command="{Binding NumberButtonCommand}" CommandParameter="2" Grid.Row="2" Grid.Column="1" Width="70" Height="70" FontSize="18"/>
+            <Button Content="1" Command="{Binding NumberButtonCommand}" CommandParameter="1" Grid.Row="2" Grid.Column="2" Width="70" Height="70" FontSize="18"/>
 
             <!-- Button for 0 and Decimal Button -->
-            <Button Content="0" Command="{Binding NumberButtonCommand}" CommandParameter="0" Grid.Row="3" Grid.Column="1" Width="50" Height="50"/>
-            <Button Content="." Command="{Binding DecimalButtonCommand}" Grid.Row="3" Grid.Column="0" Width="50" Height="50"/>
+            <Button Content="0" Command="{Binding NumberButtonCommand}" CommandParameter="0" Grid.Row="3" Grid.Column="1" Width="70" Height="70" FontSize="18"/>
+            <Button Content="." Command="{Binding DecimalButtonCommand}" Grid.Row="3" Grid.Column="0" Width="70" Height="70" FontSize="18"/>
 
             <!-- Operation Buttons (Add, Subtract, Multiply, Divide) -->
-            <Button Content="Add" Command="{Binding OperationCommand}" CommandParameter="Add" Grid.Row="0" Grid.Column="3" Width="50" Height="50"/>
-            <Button Content="Subtract" Command="{Binding OperationCommand}" CommandParameter="Subtract" Grid.Row="1" Grid.Column="3" Width="50" Height="50"/>
-            <Button Content="Multiply" Command="{Binding OperationCommand}" CommandParameter="Multiply" Grid.Row="2" Grid.Column="3" Width="50" Height="50"/>
-            <Button Content="Divide" Command="{Binding OperationCommand}" CommandParameter="Divide" Grid.Row="3" Grid.Column="3" Width="50" Height="50"/>
+            <Button Content="Add" Command="{Binding OperationCommand}" CommandParameter="Add" Grid.Row="0" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
+            <Button Content="Subtract" Command="{Binding OperationCommand}" CommandParameter="Subtract" Grid.Row="1" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
+            <Button Content="Multiply" Command="{Binding OperationCommand}" CommandParameter="Multiply" Grid.Row="2" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
+            <Button Content="Divide" Command="{Binding OperationCommand}" CommandParameter="Divide" Grid.Row="3" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
 
             <!-- Clear Button -->
-            <Button Content="Clear" Command="{Binding ClearCommand}" Grid.Row="3" Grid.Column="2" Width="50" Height="50"/>
+            <Button Content="Clear" Command="{Binding ClearCommand}" Grid.Row="3" Grid.Column="2" Width="70" Height="70" FontSize="18"/>
 
             <!-- Equals Button -->
-            <Button Content="=" Command="{Binding EqualsCommand}" Grid.Row="3" Grid.Column="3" Width="50" Height="50"/>
+            <Button Content="=" Command="{Binding EqualsCommand}" Grid.Row="3" Grid.Column="3" Width="70" Height="70" FontSize="18"/>
         </Grid>
     </Grid>
 </Window>

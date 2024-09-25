@@ -11,6 +11,7 @@ namespace WpfCalculator.ViewModel
         private string _number2 = ""; // Stores the second number input
         private double _result; // Stores the result of the calculation
         private string _selectedOperation = ""; // Stores the current selected operation (Add, Subtract, etc.)
+        private string _selectedOperationDisplay = ""; // Stores the symbol of the current selected operation
         private bool _isNumber1Active = true; // Indicates whether we are entering Number1 or Number2
         private readonly Calculator _calculator; // Calculator model that performs arithmetic operations
 
@@ -47,6 +48,17 @@ namespace WpfCalculator.ViewModel
             }
         }
 
+        // Public property to bind the selected operation symbol to the View
+        public string SelectedOperationDisplay
+        {
+            get => _selectedOperationDisplay;
+            set
+            {
+                _selectedOperationDisplay = value;
+                OnPropertyChanged(nameof(SelectedOperationDisplay)); // Notify view when the selected operation changes
+            }
+        }
+
         // ICommand properties for operations and decimal input
         public ICommand OperationCommand { get; } // Command to handle operation button clicks
         public ICommand EqualsCommand { get; } // Command to handle equals button click
@@ -67,15 +79,36 @@ namespace WpfCalculator.ViewModel
             DecimalButtonCommand = new RelayCommand(OnDecimalButtonClick); // Bind decimal button
         }
 
-        // Sets the current operation (Add, Subtract, Multiply, Divide) based on the user's choice
+        // Sets the current operation (Add, Subtract, Multiply, Divide) and updates the displayed operation
         private void SetOperation(object parameter)
         {
             if (parameter != null)
             {
                 _selectedOperation = parameter.ToString(); // Store the selected operation as a string
-                _isNumber1Active = false; // After choosing an operation, switch to entering Number2
+                _selectedOperationDisplay = GetOperationSymbol(_selectedOperation); // Update the displayed operation symbol
+                OnPropertyChanged(nameof(SelectedOperationDisplay)); // Notify the UI about the update
+                _isNumber1Active = false; // Switch to entering Number2 after the operation is selected
             }
         }
+
+        // Returns the symbol of the selected operation to be displayed
+        private string GetOperationSymbol(string operation)
+        {
+            switch (operation)
+            {
+                case "Add":
+                    return "+";
+                case "Subtract":
+                    return "-";
+                case "Multiply":
+                    return "*";
+                case "Divide":
+                    return "/";
+                default:
+                    return "";
+            }
+        }
+
 
         // Executes the stored operation when the Equals button is pressed
         private void ExecuteOperation(object parameter)
@@ -142,6 +175,7 @@ namespace WpfCalculator.ViewModel
             Number2 = ""; // Clear Number2
             Result = 0; // Reset the result
             _selectedOperation = ""; // Clear the selected operation
+            _selectedOperationDisplay = ""; // Clear the operation display
             _isNumber1Active = true; // Reset focus to Number1 input for the next calculation
         }
 
@@ -158,6 +192,7 @@ namespace WpfCalculator.ViewModel
             Number1 = ""; // Clear Number1
             Number2 = ""; // Clear Number2
             _selectedOperation = ""; // Clear the selected operation
+            _selectedOperationDisplay = ""; // Clear the operation display
             _isNumber1Active = true; // Set focus back to Number1 for the next calculation
         }
 
