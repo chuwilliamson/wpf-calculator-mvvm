@@ -4,7 +4,8 @@ built into windows.
 
 ![image](https://github.com/user-attachments/assets/6a6e8909-98e4-48db-b24e-beda378a6af7)
 
-![image](https://github.com/user-attachments/assets/cfec1ccf-a212-431e-942f-4f005f14b913)
+![calculatordemo](https://github.com/user-attachments/assets/4d1c061c-bf7f-4fd9-964d-ca01d16d5578)
+
 
 
 Requirements are: 
