@@ -192,3 +192,5 @@ bin
 obj
 /WpfCalculatorApp/.vs/WpfCalculatorApp
 /WpfCalculator/.vs/WpfCalculator
+/WpfCalculator/.vs
+/WpfCalculatorNoCommands/.vs
