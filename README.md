@@ -4,11 +4,11 @@ built into windows.
 
 ![image](https://github.com/user-attachments/assets/6a6e8909-98e4-48db-b24e-beda378a6af7)
 
-#Revision 1
+# Revision 1
 
 ![calculatordemo](https://github.com/user-attachments/assets/4d1c061c-bf7f-4fd9-964d-ca01d16d5578)
 
-#Revision 2
+# Revision 2
 
 ![calculatorSingleTextBox](https://github.com/user-attachments/assets/e503656a-3cba-401d-adca-adceced97ec4)
 
